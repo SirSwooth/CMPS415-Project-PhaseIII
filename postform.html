@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title> Create New Ticket </title>
+    </head>
+
+    <body>
+        <form action="/createticketbyform/" method=POST>
+
+            <label for="id"> id: </label> <br>
+            <input type="number" name="id" id="id"> <br> <br>
+
+            <label for="created_at"> created at: </label> <br>
+            <input type="datetime" name="created_at" id="created_at"> <br> <br>
+
+            <label for="type"> type: </label> <br>
+            <input type="text" name="type" id="type"> <br> <br>
+
+            <label for="subject"> subject: </label> <br>
+            <input type="text" name="subject" id="subject"> <br> <br>
+
+            <label for="description"> description: </label> <br>
+            <input type="text" name="description" id="description"> <br> <br>
+
+            <label for="priority"> priority: </label> <br>
+            <input type="text" name="priority" id="priority"> <br> <br>
+
+            <label for="status"> status: </label> <br>
+            <input type="text" name="status" id="status"> <br> <br>
+            
+            <label for="recipient"> recipient: </label> <br>
+            <input type="text" name="recipient" id="recipient"> <br> <br>
+
+            <label for="submitter"> submitter: </label> <br>
+            <input type="text" name="submitter" id="submitter"> <br> <br>
+
+            <label for="assignee_id"> assignee id: </label> <br>
+            <input type="number" name="assignee_id" id="assignee_id"> <br> <br>
+
+            <label for="follower_ids"> follower id: </label> <br>
+            <input type="number" name="follower_ids" id="follower_ids"> <br> <br>
+
+            <label for="tags"> tags: </label> <br>
+            <input type="text" name="tags" id="tags"> <br> <br>
+
+            <input type="submit" value="Create ticket">
+            
+        </form>
+    </body>
+
+</html>
