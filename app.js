@@ -194,59 +194,6 @@ app.post('/createticketbyform/', (req, res) => {
 
 });
 
-/*
-// edit form route
-app.get('rest/ticket/edit/:id', (req, res) => {
-
-    // ticket info
-    var ticketID = Number(req.params.id);
-    var ticket;
-
-    // mongo
-    const client = new MongoClient(uri);
-
-    async function run() {
-
-        const db = client.db('Tickets');
-        const collection = db.collection('TicketList');
-
-        try {
-
-            ticket = await collection.findOne( { id: ticketID }, function (err, data) {
-
-                if(err) {
-                    console.log(err);
-                    throw err;
-                } else {
-                    console.log(data);
-                }
-        
-            });
-
-        } catch (e) {
-            console.log(e);
-            res.send("Error getting ticket");
-        }
-
-    }
-
-    run().catch(console.dir);
-
-    fs.readFile('./postform.html', 'utf-8', (err, data) => {
-
-        if (err) {
-            console.log(err);
-        } else {
-            res.write(data);
-        }
-
-        res.send();
-
-    });
-
-});
-*/
-
 // Route to edit a ticket with specified ID:
 app.put('/rest/ticket/:id', (req, res) => {
 
