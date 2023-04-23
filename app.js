@@ -283,8 +283,7 @@ app.delete('/rest/ticket/:id', (req, res) => {
         } catch (e) {
             console.log(e);
         } finally {
-            console.log("delete");
-            res.send("delete");
+            res.send();
             await client.close();
         }
 
