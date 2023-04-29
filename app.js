@@ -337,8 +337,38 @@ app.get('/rest/xml/ticket/:id', (req, res) => {
 
 
 // xml put
-app.put('/rest/xml/ticket/:id', expressxml({explicitArray: false}), (req, res) => {
+app.put('/rest/xml/ticket/:id', expressxml({ explicitArray: false}), (req, res) => {
 
-    
+    var ticketXML;
+
+    async function run() {
+
+        try {
+
+            // the expressxml options in the endpoint convert the XML body to JSON
+            ticketXML = req.body.ticket;
+            console.log(ticketXML);
+
+            ticketXML = JSON.stringify(ticketXML);
+            console.log(ticketXML);
+
+            // using fetch to edit ticket JSON with XML in request
+            await fetch(`${appAddress}/rest/ticket/${req.params.id}`, {
+                method: 'PUT',
+                body: ticketXML,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+        } catch (e) {
+            console.log(e);
+        } finally {
+            res.send();
+        }
+
+    }
+
+    run().catch(console.dir);
 
 });
