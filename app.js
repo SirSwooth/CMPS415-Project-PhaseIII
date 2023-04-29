@@ -3,13 +3,18 @@ const express = require('express');
 const fs = require('fs');
 const readline = require ('readline');
 const { MongoClient } = require("mongodb");
+const fetch = require('node-fetch');
+const js2xmlparser = require('js2xmlparser');
+const expressxml = require('express-xml-bodyparser');
+
 const uri = "mongodb+srv://bradylandry:3xpLpsmn1iHMfAPf@cluster0.7otayma.mongodb.net/?retryWrites=true&w=majority"
 
 
 const app = express();
 const port = 3000;
+const appAddress = `http://localhost:${port}`
 app.listen(port);
-console.log(`Server started at http://localhost:${port}`);
+console.log(`Server started at ${appAddress}`);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -290,5 +295,50 @@ app.delete('/rest/ticket/:id', (req, res) => {
     }
 
     run().catch(console.dir);
+
+});
+
+
+
+// XML endpoints
+
+// xml get
+app.get('/rest/xml/ticket/:id', (req, res) => {
+
+    var ticket;
+
+    async function run() {
+
+        try {
+
+            // using fetch to get ticket JSON for XML conversion
+            await fetch(`${appAddress}/rest/ticket/${req.params.id}`)
+            .then(res => res.json())
+            .then(body => {
+                ticket = body;
+            });
+
+            ticket = js2xmlparser.parse("ticket", ticket);
+
+
+        } catch (e) {
+            console.log(e)
+        } finally {
+
+            res.send(ticket);
+
+        }
+
+    }
+
+    run().catch(console.dir);
+
+});
+
+
+// xml put
+app.put('/rest/xml/ticket/:id', expressxml({explicitArray: false}), (req, res) => {
+
+    
 
 });
